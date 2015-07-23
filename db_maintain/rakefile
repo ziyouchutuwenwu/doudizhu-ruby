@@ -1,0 +1,37 @@
+require_relative './src/gen_test'
+require_relative './src/init'
+require_relative './src/sync_to_redis'
+
+# desc "清空pgsql和redis"
+# task :init do
+#   force_init_doudizhu_table
+#   flush_redis_db
+#   puts "初始化斗地主数据库完成"
+# end
+#
+# desc "生成桌子和房间的测试数据"
+# task :gen_test do
+#   set_test_data
+#   puts "生成桌子和房间的测试数据"
+# end
+#
+# desc "pgsql的房间数据同步到redis"
+# task :sync do
+#   sync_to_redis
+#   puts "pgsql的房间数据同步到redis"
+# end
+
+desc "一次性生成测试数据"
+task :gen_test_data do
+
+  force_init_doudizhu_table
+  flush_redis_db
+  set_test_data
+  sync_to_redis
+end
+
+desc "为后台生成测试数据"
+task :gen_backend_test_data do
+  force_init_doudizhu_table
+  set_backend_test_data
+end

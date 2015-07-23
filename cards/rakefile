@@ -1,0 +1,11 @@
+require_relative './src/card/card'
+require_relative './src/card/card_compare'
+require_relative './src/card/card_validator'
+require_relative './src/card/card_prompt'
+require_relative './src/card/card_prompt_type'
+
+desc "洗牌"
+task :wash_card do
+  cards = Card.wash_card
+  puts "洗牌，结果#{cards}"
+end
